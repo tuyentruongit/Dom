@@ -16,26 +16,24 @@ const quizes = [
     },
 ];
 
-// const questionTitleEl = document.querySelector(".quiz-item h3"); /// title cau hoi
-const quizContainer = document.querySelector(".quiz-container");
+const container = document.querySelector(".quiz-container");
 const btn = document.querySelector("#btn");
-// Hiển thị thông tin câu hỏi hiện tại
+
 const renderQuestion = () => {
-    // Lấy thông tin câu hỏi hiện tại
-    innerHTML = ''
+
+    html = ''
     for(let i=0; i<quizes.length; i++){
-        // Hiển thị title của câu hỏi
+
         const currentQuestion = quizes[i];
-        innerHTML += `  <div class="quiz-item"> 
+        html += `  <div class="quiz-item"> 
                             <h3> Câu hỏi ${i + 1}: ${currentQuestion.question} </h3>
                             <div class="quiz-answer">
                     `;
-        let choicesHtml =  "";
+        let html2 =  "";
 
-        // Hiển thị các lựa chọn của câu hỏi
         currentQuestion.answers.forEach((choice, index) => {
             
-                choicesHtml += ` 
+            html2 += ` 
                     
                         <div class="quiz-answer-item">
                             <input type="radio" name="${i + 1}">
@@ -44,18 +42,18 @@ const renderQuestion = () => {
                 `;
                 
         });
-        innerHTML += choicesHtml + `</div>` + `</div>`;
+        html += html2 + `</div>` + `</div>`;
     }  
-    quizContainer.innerHTML = innerHTML
+    container.innerHTML = innerHTML
 
 };
 
 btn.addEventListener("click", () => {
-    let random_answers = quizes.map(x => Math.floor(Math.random() * (x.answers.length) ));
-    const quizAnswers = document.querySelectorAll(".quiz-item .quiz-answer");
-    for (let i = 0 ; i < random_answers.length; i++){
-        let quizAnswer = quizAnswers[i].querySelectorAll('.quiz-answer-item')
-        quizAnswer[random_answers[i]].querySelector('input').checked = true
+    let random = quizes.map(x => Math.floor(Math.random() * (x.answers.length) ));
+    const answer = document.querySelectorAll(".quiz-item .quiz-answer");
+    for (let i = 0 ; i < random.length; i++){
+        let quizAnswer = answer[i].querySelectorAll('.quiz-answer-item')
+        quizAnswer[random[i]].querySelector('input').checked = true
     }
 })
 
